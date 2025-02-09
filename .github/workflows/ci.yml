@@ -62,8 +62,8 @@ jobs:
         if: matrix.platforms == 'all'
         run: |
           for platform in linux/arm64 linux/amd64 linux/riscv64 linux/ppc64le linux/s390x; do
-            docker run --rm --platform ${platform} alpine:latest /bin/sh -ec 'apk add gcc; for i in $(seq 3000); do gcc --version; done'
-            docker run --rm --platform ${platform} ubuntu:24.04  /bin/sh -ec 'apt-get update; apt-get install -y gcc; for i in $(seq 3000); do gcc --version; done'
+            docker run --rm --platform ${platform} alpine:latest /bin/sh -ec 'apk add gcc; for i in $(seq 3000); do gcc --version > /dev/null; done'
+            docker run --rm --platform ${platform} ubuntu:24.04  /bin/sh -ec 'apt-get update; apt-get install -y gcc; for i in $(seq 3000); do gcc --version > /dev/null; done'
           done
 
   error:
