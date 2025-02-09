@@ -62,8 +62,8 @@ jobs:
         if: matrix.platforms == 'all'
         run: |
           for platform in linux/arm64 linux/amd64 linux/riscv64 linux/ppc64le linux/s390x; do
-            docker run --rm --platform ${platform} alpine:latest /bin/sh -c "for i in $(seq 300); do /bin/uname -a; done"
-            docker run --rm --platform ${platform} ubuntu:24.04  /bin/sh -c "for i in $(seq 300); do /bin/uname -a; done"
+            docker run --rm --platform ${platform} alpine:latest /bin/sh -c "for i in $(seq 300); do; /bin/uname -a; done"
+            docker run --rm --platform ${platform} ubuntu:24.04  /bin/sh -c "for i in $(seq 300); do; /bin/uname -a; done"
           done
 
   error:
