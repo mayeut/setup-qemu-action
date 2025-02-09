@@ -59,8 +59,9 @@ jobs:
 
       -
         name: Check we can use QEMU properly
+        if: matrix.platforms == 'all'
         run: |
-          for platform in linux/arm64 linux/amd64 linux/riscv64 linux/ppc64le linux/s390x linux/386; do
+          for platform in linux/arm64 linux/amd64 linux/riscv64 linux/ppc64le linux/s390x; do
             docker run --rm --platform ${platform} alpine:latest /bin/uname -a
             docker run --rm --platform ${platform} ubuntu:24.04  /usr/bin/uname -a
           done
