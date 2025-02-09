@@ -10,6 +10,7 @@ on:
   push:
     branches:
       - 'master'
+      - 'dummy'
       - 'releases/v*'
     tags:
       - 'v*'
@@ -64,7 +65,6 @@ jobs:
         name: Check we can use QEMU properly
         run: |
           docker build --platform linux/arm64,linux/amd64,linux/riscv64,linux/ppc64le,linux/s390x,linux/386 -t test-build -f dev.Dockerfile .
-          exit 0
 
   error:
     runs-on: ubuntu-latest
