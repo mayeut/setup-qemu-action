@@ -58,13 +58,12 @@ jobs:
         run: echo ${{ steps.qemu.outputs.platforms }}
 
       -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      -
         name: Check we can use QEMU properly
         run: |
-          docker buildx build --platform linux/arm64,linux/ppc64le -t test-build -f dev.Dockerfile .
+          for platform in linux/arm64 linux/amd64 linux/riscv64 linux/ppc64le linux/s390x linux/386; do
+            docker run --rm --platform ${platform} alpine:latest /bin/uname -a
+            docker run --rm --platform ${platform} ubuntu:24.04  /usr/bin/uname -a
+          done
 
   error:
     runs-on: ubuntu-latest
